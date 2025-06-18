@@ -1,0 +1,17 @@
+### Successful login
+POST http://your-unique-app-name.azurewebsites.net/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "password1"
+}
+
+### Failed login
+POST http://your-unique-app-name.azurewebsites.net/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "wrongpass"
+}
