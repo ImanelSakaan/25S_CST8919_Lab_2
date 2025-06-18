@@ -1,11 +1,33 @@
 # 🔐 Azure Flask Login Monitoring Lab 
+### 🔍 Function of Azure Flask Login Monitoring
+   It combines Flask (web app) + Azure (hosting/platform) + Monitoring (security/usage insights):
 
-## 📘 Scenario
-As a cloud security engineer, your task is to secure a basic Flask web application. The app must log login attempts, detect brute-force login behavior, and trigger an automatic alert if suspicious activity is found.
-•	A Flask web app deployed on Azure that logs login attempts
-•	How Azure Monitor captures and analyzes security events
-•	Real-time brute force detection using KQL queries
-•	Automated alerting when suspicious activity occurs
+#### ✅ 1. User Authentication Monitoring
+You can track:
+- Who is logging in (user IDs/emails)
+- When they logged in (timestamp)
+- From where (IP address, location)
+How often they fail to log in (brute force detection)
+
+#### 🛡️ 2. Security Auditing
+Logging and alerting on:
+ -Repeated failed logins
+- Suspicious login patterns (e.g. multiple countries in short time)
+- Admin login attempts
+This helps in identifying security threats or account breaches.
+
+#### 📈 3. Application Performance & Usage Monitoring
+Using Azure tools (like Application Insights or Log Analytics), you can monitor:
+
+- API calls to login endpoints
+ -Time taken for login/auth flows
+- Any errors during the login process (e.g., HTTP 401)
+
+#### 🧰 4. How You Can verify It
+-	A Flask web app deployed on Azure that logs login attempts
+-	How Azure Monitor captures and analyzes security events
+-	Real-time brute force detection using KQL queries
+-	Automated alerting when suspicious activity occurs
 
 ---
 ## 📎 Files Included in this Repo
