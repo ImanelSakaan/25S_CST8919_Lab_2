@@ -2,6 +2,10 @@
 
 ## 📘 Scenario
 As a cloud security engineer, your task is to secure a basic Flask web application. The app must log login attempts, detect brute-force login behavior, and trigger an automatic alert if suspicious activity is found.
+•	A Flask web app deployed on Azure that logs login attempts
+•	How Azure Monitor captures and analyzes security events
+•	Real-time brute force detection using KQL queries
+•	Automated alerting when suspicious activity occurs
 
 ---
 ## 📎 Files Included in this Repo
@@ -124,9 +128,9 @@ AppServiceConsoleLogs
 | project TimeGenerated, Message
 | order by TimeGenerated desc
 
-![image](https://github.com/user-attachments/assets/97d349ef-d9fd-4890-a00e-c7d52222272c)
-
 ```
+![image](https://github.com/user-attachments/assets/64ca0a9a-6ef2-4af2-aa53-1f30ba15a68a)
+
 3. **Verify that failed login attempts are displayed.**
 
 ### 🚨 Part 4: Create an Alert Rule
