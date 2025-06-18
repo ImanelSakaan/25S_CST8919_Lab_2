@@ -23,11 +23,11 @@ As a cloud security engineer, your task is to secure a basic Flask web applicati
      d:\25S_CST8919_Lab_2\25S_CST8919_Lab_2\.venv\Scripts\python.exe -m pip install flask
      
    - Create Project Files
-     app.py – Your main Flask application.
-     requirements.txt – Contains dependencies (e.g., flask).
-     test-app.http – A file for testing login via HTTP requests using VS Code REST Client.
+     1. app.py – Your main Flask application.
+     2. requirements.txt – Contains dependencies (e.g., flask).
+     3. test-app.http – A file for testing login via HTTP requests using VS Code REST Client.
      
-2. **eployment Using Azure CLI**
+2. **Deployment Using Azure CLI**
         Follow these steps in the **VS Code terminal** to deploy your Flask app to Azure:
        1. **Login to Azure**
            ```bash
@@ -46,9 +46,7 @@ As a cloud security engineer, your task is to secure a basic Flask web applicati
       4. **Create the Web App**
           ```bash
          az webapp create --resource-group flask-lab-rg --plan flaskPlan --name <YOUR_WEBAPP_NAME> --runtime "PYTHON|3.10" --deployment-local-git
-      ```
-      ![image](https://github.com/user-attachments/assets/22159d4c-ef5f-4dd3-b73f-265873fa800f)
-
+         ```
 
 ### 2. Set Deployment Remote and Push
     After creating the Web App, Azure will give you a Git deployment URL. Use the following commands to set the remote and push your code:
