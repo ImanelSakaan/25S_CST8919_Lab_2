@@ -2,7 +2,7 @@
 ## 📸 Demo Video
 
 🎥 Watch the 10-minute demo here:  
-**[▶️ YouTube Video Link]([https://youtu.be/HuYFQiQ1yaM)**
+**[▶️ YouTube Video Link](https://youtu.be/HuYFQiQ1yaM)**
 
 ---
 ### 🔍 Function of Azure Flask Login Monitoring
