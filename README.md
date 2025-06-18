@@ -15,13 +15,62 @@ As a cloud security engineer, your task is to secure a basic Flask web applicati
 
 ### ⚙️ Part 1: Deploy the Flask App to Azure
 
-1. **Create a Python Flask app**  
-   - Implement a `/login` route.
-   - Log successful and failed login attempts using `logging`.
+1. **Develop a Flask App with /login Route**  
+   - Clone the GitHub Repository
+           git clone https://github.com/ramymohamed10/25S_CST8919_Lab_2
 
-2. **Deploy to Azure Web App**
-   - Use Azure CLI to create a resource group, App Service Plan, and a Web App.
-   - Deploy the app using ZIP deploy or GitHub Actions.
+   - Install Flask
+     d:\25S_CST8919_Lab_2\25S_CST8919_Lab_2\.venv\Scripts\python.exe -m pip install flask
+     
+   - Create Project Files
+     app.py – Your main Flask application.
+     requirements.txt – Contains dependencies (e.g., flask).
+     test-app.http – A file for testing login via HTTP requests using VS Code REST Client.
+     
+2. **eployment Using Azure CLI**
+        Follow these steps in the **VS Code terminal** to deploy your Flask app to Azure:
+       1. **Login to Azure**
+           ```bash
+            az login
+            ````
+      
+      2. **Create a Resource Group**
+           ```bash
+            az group create --name flask-lab-rg --location canadacentral
+            ```
+      3. **Create an App Service Plan**
+           ```bash
+         az appservice plan create --name flaskPlan --resource-group flask-lab-rg --sku FREE
+         ```
+      
+      4. **Create the Web App**
+          ```bash
+         az webapp create --resource-group flask-lab-rg --plan flaskPlan --name <YOUR_WEBAPP_NAME> --runtime "PYTHON|3.10" --deployment-local-git
+      ```
+      ![image](https://github.com/user-attachments/assets/22159d4c-ef5f-4dd3-b73f-265873fa800f)
+
+
+### 2. Set Deployment Remote and Push
+    After creating the Web App, Azure will give you a Git deployment URL. Use the following commands to set the remote and push your code:
+      ```bash
+      git remote add azure <GIT_URL_FROM_PREVIOUS_COMMAND>
+      git push azure master
+      ````
+![image](https://github.com/user-attachments/assets/e9a52003-9408-4391-af18-4ad9e8ef3305)
+
+<img width="614" alt="image" src="https://github.com/user-attachments/assets/594f1ecb-784d-4512-9f07-6f650313cfb4" />
+
+
+```bash
+git push azure master
+````
+This means:
+
+* Take the code in your local `master` branch and send it to the Azure remote repository.
+* Azure receives your Flask app’s code.
+* It runs a deployment process.
+* Your app becomes live at:
+  `https://<your-app-name>.azurewebsites.net`
 
 ---
 
@@ -29,6 +78,11 @@ As a cloud security engineer, your task is to secure a basic Flask web applicati
 
 1. **Create a Log Analytics Workspace**  
    - In the Azure Portal → Search: *Log Analytics Workspaces* → Create → Choose same region as your Web App.
+     Run this command in the terminal to create a Log Analytics Workspace:
+
+   ```bash
+   az monitor log-analytics workspace create --resource-group flask-lab-rg --workspace-name flaskLogs --location canadacentral
+![image](https://github.com/user-attachments/assets/53cf0431-257e-41b6-99eb-117d14140e75)
 
 2. **Enable Diagnostic Logs**
    - Go to your Web App → **Monitoring > Diagnostic settings**
@@ -36,6 +90,20 @@ As a cloud security engineer, your task is to secure a basic Flask web applicati
      - ✅ AppServiceConsoleLogs  
      - ✅ AppServiceHTTPLogs *(optional)*
      - ✅ Send to Log Analytics workspace (select the one you created)
+           
+         1. Go to **Azure Portal > Your Web App > Monitoring > Diagnostic settings**  
+         2. Click **+ Add diagnostic setting** and configure as follows:
+            - ✅ Enable **AppServiceConsoleLogs**  
+            - ✅ (Optional) Enable **AppServiceHTTPLogs**  
+            - 📤 **Send to Log Analytics Workspace**  
+            - Select your workspace: **`flaskLogs`**
+
+  This setup ensures:
+      All your login attempts (and print/debug info) from Flask will appear in Log Analytics.
+      You'll be able to query them using KQL in the next steps.
+
+
+
 
 3. **Test your app**
    - Create a file named `test-app.http` with login requests for success/failure.
