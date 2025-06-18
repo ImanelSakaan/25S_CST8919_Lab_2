@@ -101,6 +101,8 @@ This means:
   This setup ensures:
       All your login attempts (and print/debug info) from Flask will appear in Log Analytics.
       You'll be able to query them using KQL in the next steps.
+      
+![image](https://github.com/user-attachments/assets/9d31acc2-9da9-4e50-aab3-8e37bfbc3d09)
 
 
 
@@ -108,6 +110,7 @@ This means:
 3. **Test your app**
    - Create a file named `test-app.http` with login requests for success/failure.
    - Use the **REST Client** extension in VS Code to send requests and generate logs.
+![image](https://github.com/user-attachments/assets/b2b07ad9-8d4e-4356-b2fe-fcfd3acc535a)
 
 ---
 
