@@ -1,4 +1,112 @@
-# CST8919 Lab 2: Building a Web App with Threat Detection using Azure Monitor and KQL
+# 🔐 Azure Flask Login Monitoring Lab 
+
+## 📘 Scenario
+As a cloud security engineer, your task is to secure a basic Flask web application. The app must log login attempts, detect brute-force login behavior, and trigger an automatic alert if suspicious activity is found.
+
+---
+## 📎 Files Included in this Repo
+
+- `app.py` — The Flask application that handles login attempts.
+- `test-app.http` — HTTP request file for testing login attempts (compatible with VS Code REST Client).
+- `requirements.txt` — List of Python dependencies needed to run the app.
+- `README.md` — Documentation of the lab steps, KQL query, and demo instructions.
+
+## ✅ Lab Tasks & Steps
+
+### ⚙️ Part 1: Deploy the Flask App to Azure
+
+1. **Create a Python Flask app**  
+   - Implement a `/login` route.
+   - Log successful and failed login attempts using `logging`.
+
+2. **Deploy to Azure Web App**
+   - Use Azure CLI to create a resource group, App Service Plan, and a Web App.
+   - Deploy the app using ZIP deploy or GitHub Actions.
+
+---
+
+### 🧪 Part 2: Enable Monitoring
+
+1. **Create a Log Analytics Workspace**  
+   - In the Azure Portal → Search: *Log Analytics Workspaces* → Create → Choose same region as your Web App.
+
+2. **Enable Diagnostic Logs**
+   - Go to your Web App → **Monitoring > Diagnostic settings**
+   - Create a new setting:
+     - ✅ AppServiceConsoleLogs  
+     - ✅ AppServiceHTTPLogs *(optional)*
+     - ✅ Send to Log Analytics workspace (select the one you created)
+
+3. **Test your app**
+   - Create a file named `test-app.http` with login requests for success/failure.
+   - Use the **REST Client** extension in VS Code to send requests and generate logs.
+
+---
+
+### 🔍 Part 3: Query Logs with KQL
+
+1. **Open Log Analytics > Logs**
+2. **Run this KQL query** to detect failed logins:
+
+```kql
+AppServiceConsoleLogs
+| where TimeGenerated > ago(1h)
+| where Message contains "Failed login attempt"
+| project TimeGenerated, Message
+| order by TimeGenerated desc
+```
+3. **Verify that failed login attempts are displayed.**
+
+### 🚨 Part 4: Create an Alert Rule
+
+1. Go to **Azure Monitor > Alerts > + Create > Alert Rule**
+
+2. **Scope**  
+   - Select the **Log Analytics Workspace** connected to your Web App.
+
+3. **Condition**  
+   - Use your **KQL query** from Part 3  
+   - **Measure**: Table rows  
+   - **Threshold**: Greater than 5  
+   - **Aggregation granularity**: 5 minutes  
+   - **Frequency of evaluation**: 1 minute
+
+4. **Action Group**  
+   - Create a **new action group**  
+   - Add an **email notification** action
+
+5. **Finalize the Alert**  
+   - **Name** your alert (e.g., `BruteForceLoginAlert`)  
+   - Set **Severity** to 2 or 3  
+   - Click **Save**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Objective
