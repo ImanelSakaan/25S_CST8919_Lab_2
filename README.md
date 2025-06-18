@@ -1,4 +1,10 @@
 # 🔐 Azure Flask Login Monitoring Lab 
+## 📸 Demo Video
+
+🎥 Watch the 10-minute demo here:  
+**[▶️ YouTube Video Link]([https://youtu.be/HuYFQiQ1yaM)**
+
+---
 ### 🔍 Function of Azure Flask Login Monitoring
    It combines Flask (web app) + Azure (hosting/platform) + Monitoring (security/usage insights):
 
