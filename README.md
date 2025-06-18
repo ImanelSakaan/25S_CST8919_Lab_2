@@ -125,6 +125,9 @@ AppServiceConsoleLogs
 | where Message contains "Failed login attempt"
 | project TimeGenerated, Message
 | order by TimeGenerated desc
+
+![image](https://github.com/user-attachments/assets/97d349ef-d9fd-4890-a00e-c7d52222272c)
+
 ```
 3. **Verify that failed login attempts are displayed.**
 
@@ -152,10 +155,12 @@ AppServiceConsoleLogs
    - Click **Save**
 
 
+<img width="1250" alt="Screenshot 2025-06-18 alert2" src="https://github.com/user-attachments/assets/83e46d83-bd9f-49d5-9133-650ad55aa31f" />
 
 
 
 
+![image](https://github.com/user-attachments/assets/815f41dc-d1a2-4e02-8502-ff868529a40a)
 
 
 
